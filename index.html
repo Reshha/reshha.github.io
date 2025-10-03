@@ -1,107 +1,587 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Deja Brew</title>
-    <link rel="stylesheet" href="home.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Montserrat:wght@600&display=swap"
       rel="stylesheet"
     />
+    <title>Deja Brew</title>
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        background: url("/cafe bg.png") no-repeat top center;
+        background-size: cover;
+        background-attachment: scroll;
+      }
+
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 82px;
+        background: rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(6px);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 40px;
+        z-index: 1000;
+      }
+
+      .logo {
+        font-family: "Abril Fatface", serif;
+        font-size: 32px;
+        letter-spacing: -0.06em;
+        color: #decbae;
+      }
+
+      nav {
+        display: flex;
+        margin-right: 80px;
+      }
+
+      nav a {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 600;
+        font-size: 20px;
+        letter-spacing: 0.035em;
+        color: #decbae;
+        text-decoration: none;
+        margin-left: 30px;
+        transition: color 0.3s ease;
+      }
+      nav a:hover {
+        color: #c3a87f;
+      }
+
+      .green-menu {
+        background-color: #383f39;
+        height: 90%;
+        margin: 0 auto;
+        width: 90%;
+        margin-top: 150px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .white-menu {
+        background-color: white;
+        width: 90%;
+        height: 95%;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .menu-gray {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 300px;
+        height: 850px;
+        background: #eae9e9;
+        z-index: 1;
+      }
+
+      .menu-gray2 {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 2000px;
+        height: 850px;
+        background: #eae9e9;
+        z-index: 1;
+      }
+
+      .menu-content {
+        position: relative;
+        z-index: 2;
+        padding: 30px 60px 60px;
+      }
+
+      .menu-title {
+        font-family: "Abril Fatface", serif;
+        font-size: 128px;
+        letter-spacing: -0.06em;
+        margin: 80px auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 30px;
+      }
+
+      .menu-title::before,
+      .menu-title::after {
+        content: "";
+        flex: 1;
+        height: 2px;
+        background: #000;
+        max-width: 120px;
+      }
+
+      .menu-category {
+        font-family: "Abril Fatface", serif;
+        font-size: 64px;
+        margin: -20px 0 80px;
+        border-bottom: 2px solid #000;
+        padding-bottom: 10px;
+      }
+
+      /* Extra spacing for teas category */
+      .teas-category {
+        margin-top: 120px; /* pushes this section down */
+      }
+
+      .menu-section {
+        display: flex;
+        flex-direction: row;
+        gap: 40px;
+        margin-top: -20px;
+        align-items: flex-start;
+      }
+
+      .menu-items {
+        flex: 2;
+        order: 1;
+      }
+      .menu-image {
+        flex: 1;
+        order: 2;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+      }
+
+      .menu-section.reverse .menu-items {
+        order: 2;
+      }
+      .menu-section.reverse .menu-image {
+        order: 1;
+      }
+
+      .menu-item {
+        margin-bottom: 25px;
+      }
+
+      .menu-item-name {
+        font-family: "Abril Fatface", serif;
+        font-size: 32px;
+        font-weight: bold;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 2px dotted #000;
+        padding-bottom: 5px;
+      }
+
+      .menu-item-price {
+        font-size: 32px;
+        font-weight: bold;
+      }
+
+      .menu-item-desc {
+        font-family: "Montserrat", sans-serif;
+        font-size: 16px;
+        font-style: italic;
+        color: #555;
+        margin-top: 5px;
+      }
+
+      .arch {
+        width: 450px;
+        height: 600px;
+        margin-top: -25px;
+        overflow: hidden;
+        border-radius: 50% 50% 0 0;
+        outline: 3px solid black;
+        outline-offset: -3px;
+      }
+
+      .arch img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .menu-section.reverse .arch {
+        margin-top: -25px; /* adjust value to your liking */
+      }
+
+      .menu-item-name span {
+        margin-left: 12px;
+        white-space: nowrap;
+      }
+
+      @media (max-width: 1024px) {
+        .menu-title { font-size: 80px; gap: 20px; }
+        .menu-category { font-size: 48px; margin-bottom: 60px; }
+        .menu-item-name { font-size: 24px; }
+        .menu-item-price { font-size: 24px; }
+        .menu-item-desc { font-size: 14px; }
+        .arch { width: 300px; height: 400px; border-radius: 40px 40px 0 0; }
+        .green-menu { margin-top: 120px; }
+        .menu-content { padding: 25px 30px 50px; }
+        .menu-gray, .menu-gray2 { height: auto; top: auto; bottom: 0; }
+      }
+
+      @media (max-width: 768px) {
+        header { flex-direction: column; align-items: flex-start; height: auto; padding: 15px 20px; }
+        nav { flex-direction: column; gap: 12px; margin: 10px 0 0 0; width: 100%; }
+        .menu-section { flex-direction: column; gap: 30px; }
+        .menu-section.reverse { flex-direction: column; }
+        .arch { width: 100%; height: auto; margin-top: 0; border-radius: 30px 30px 0 0; }
+        .menu-title { font-size: 60px; }
+        .menu-category { font-size: 36px; margin-bottom: 40px; }
+        .menu-item-name { font-size: 20px; }
+        .menu-item-price { font-size: 20px; }
+        .menu-item-desc { font-size: 14px; }
+        .green-menu { width: 100%; margin-top: 100px; }
+        .menu-content { padding: 20px 20px 40px; }
+
+        .menu-gray, .menu-gray2 {
+          position: relative;
+          height: auto;
+          top: auto;
+          bottom: auto;
+          margin: 40px 0;
+          border-radius: 20px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .menu-title { font-size: 48px; gap: 15px; }
+        .menu-category { font-size: 28px; margin-bottom: 30px; }
+        .menu-item-name { font-size: 18px; }
+        .menu-item-price { font-size: 18px; }
+        .menu-item-desc { font-size: 13px; }
+        .arch { border-radius: 20px 20px 0 0; }
+
+        .menu-content { padding: 15px 15px 30px; }
+        header { padding: 10px 15px; }
+        nav a { font-size: 18px; margin-left: 0; }
+      }
+    </style>
   </head>
 
   <body>
-    <!--Navigation Bar-->
-    <nav>
-      <h1>Deja Brew.</h1>
-
-      <div class="nav-links">
+    <header>
+      <div class="logo">Deja Brew</div>
+      <nav>
         <a href="index.html">Home</a>
         <a href="menu.html">Menu</a>
         <a href="events.html">Events</a>
-      </div>
-    </nav>
+      </nav>
+    </header>
 
-    <!--Main Content-->
-    <main class="hero">
-      <img
-        src="./images/hero.png"
-        alt="Coffee shop interior with warm lighting and cozy seating"
-        class="fade-in"
-      />
-      <h1 class="phone-logo animate-bounce">Deja Brew.</h1>
+    <div class="green-menu">
+      <div class="white-menu">
+        <h1 class="menu-title">Menu</h1>
+        <div class="menu-gray"></div>
+        <div class="menu-gray2"></div>
 
-      <div class="hero-text">
-        <h1 id="deja" class="slide-in-left">Deja</h1>
-        <h1 id="brew" class="slide-in-right">Brew.</h1>
-      </div>
-    </main>
+        <div class="menu-content">
+          <!-- Coffee: default (text left, image right) -->
+          <h2 class="menu-category">Coffee</h2>
+          <div class="menu-section">
+            <div class="menu-items">
+              <div class="menu-item">
+                <div class="menu-item-name">
+                  Espresso <span class="menu-item-price">$3</span>
+                </div>
+                <div class="menu-item-desc">Rich and bold espresso shot</div>
+              </div>
+              <div class="menu-item">
+                <div class="menu-item-name">
+                  Americano <span class="menu-item-price">$3.50</span>
+                </div>
+                <div class="menu-item-desc">Espresso with hot water</div>
+              </div>
+              <div class="menu-item">
+                <div class="menu-item-name">
+                  Cappuccino <span class="menu-item-price">$4</span>
+                </div>
+                <div class="menu-item-desc">Espresso, milk & foam</div>
+              </div>
+              <div class="menu-item">
+                <div class="menu-item-name">
+                  Latte <span class="menu-item-price">$4.50</span>
+                </div>
+                <div class="menu-item-desc">Creamy milk espresso blend</div>
+              </div>
+              <div class="menu-item">
+                <div class="menu-item-name">
+                  Mocha <span class="menu-item-price">$3.50</span>
+                </div>
+                <div class="menu-item-desc">Espresso with chocolate and milk</div>
+              </div>
+              <div class="menu-item">
+                <div class="menu-item-name">
+                  Cold Brew <span class="menu-item-price">$5</span>
+                </div>
+                <div class="menu-item-desc">Smooth, chilled coffee</div>
+              </div>
+            </div>
 
-    <!--Christmas Season Section-->
-    <section class="latte">
-      <h1 class="section-title">It's Latte Season!!!</h1>
-      <div class="section-content">
-        <img src="./images/christmas_coffee.png" alt="Christmas Coffee" />
+            <div class="menu-image">
+              <div class="arch">
+                <img src="/coffee-sample.jpg" alt="Coffee Drinks" />
+              </div>
+            </div>
+          </div>
 
-        <!-- Brown rectangle WITH text + button inside -->
-        <div class="latte-overlay">
-          <p>
-            Indulge in the rich flavors of our special holiday lattes, crafted
-            to bring warmth and joy to your celebrations. From classic
-            peppermint mochas to creamy eggnog delights, our seasonal menu has
-            something for everyone. Visit us today and make your holidays even
-            sweeter with a cup of cheer!
-          </p>
-          <button class="order-btn">Order Now</button>
-        </div>
-      </div>
+          <h2 class="menu-category teas-category">Teas & Other Drinks</h2>
+          <div class="menu-section reverse">
+            <div class="menu-image">
+              <div class="arch">
+                <img src="/tea-sample.jpg" alt="Tea Drinks" />
+              </div>
+            </div>
 
-      <!-- Background green extension -->
-      <div class="latte-extension"></div>
-    </section>
-
-    <!--Contact information-->
-    <section class="contact">
-      <div>
-        <h1 class="title animate-fade-up">It's our pleasure to serve you</h1>
-        <div class="contact-content">
-          <img
-            src="./images/map.png"
-            alt="Location map showing Deja Brew coffee shop at 200 Main Street, Roastersville, WV"
-            class="scale-in"
-          />
-          <div class="info animate-slide-up">
-            <h2>Address</h2>
-            <p>200 Main Street, Roastersville, WV</p>
-
-            <h2>Phone</h2>
-            <p>1-888-BREW-NOW</p>
-
-            <h2>Email</h2>
-            <p>deja.brew@gmail.com</p>
+            <div class="menu-items">
+              <div class="menu-item">
+                <div class="menu-item-name">
+                  Chai Latte <span class="menu-item-price">$4.50</span>
+                </div>
+                <div class="menu-item-desc">Spiced tea with milk</div>
+              </div>
+              <div class="menu-item">
+                <div class="menu-item-name">
+                  Herbal Tea <span class="menu-item-price">$3</span>
+                </div>
+                <div class="menu-item-desc">Refreshing herbal infusion</div>
+              </div>
+              <div class="menu-item">
+                <div class="menu-item-name">
+                  Matcha Latte <span class="menu-item-price">$5</span>
+                </div>
+                <div class="menu-item-desc">Green tea with milk</div>
+              </div>
+              <div class="menu-item">
+                <div class="menu-item-name">
+                  Hot Chocolate <span class="menu-item-price">$3.50</span>
+                </div>
+                <div class="menu-item-desc">Rich cocoa with milk</div>
+              </div>
+              <div class="menu-item">
+                <div class="menu-item-name">
+                  Iced Lemon Tea <span class="menu-item-price">$4</span>
+                </div>
+                <div class="menu-item-desc">Chilled lemon black tea</div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
 
-    <!--Footer-->
-    <footer>
-      <div class="logo">
-        <h1>Deja Brew.</h1>
-        <p>Taste like you have been here before.</p>
-      </div>
-      <hr />
+        <div class="menu-content">
+          <h2 class="menu-category">Pastries & Snacks</h2>
+          <div class="menu-section">
+            <div class="menu-items">
+              <div class="menu-item">
+                <div class="menu-item-name">
+                  Croissant <span class="menu-item-price">$3</span>
+                </div>
+                <div class="menu-item-desc">Buttery, flaky pastry</div>
+              </div>
+              <div class="menu-item">
+                <div class="menu-item-name">
+                  Muffin <span class="menu-item-price">$3</span>
+                </div>
+                <div class="menu-item-desc">Soft and sweet treat</div>
+              </div>
+              <div class="menu-item">
+                <div class="menu-item-name">
+                  Bagel w/ Cream Cheese <span class="menu-item-price">$4</span>
+                </div>
+                <div class="menu-item-desc">Toasted bagel with creamy cheese</div>
+              </div>
+              <div class="menu-item">
+                <div class="menu-item-name">
+                  Brownie <span class="menu-item-price">$3.50</span>
+                </div>
+                <div class="menu-item-desc">Fudgy chocolate square</div>
+              </div>
+              <div class="menu-item">
+                <div class="menu-item-name">
+                  Scone <span class="menu-item-price">$3.25</span>
+                </div>
+                <div class="menu-item-desc">Tender, lightly sweet pastry</div>
+              </div>
+            </div>
 
-      <div class="links">
-        <a href="index.html">Home</a>
-        <a href="menu.html">Menu</a>
-        <a href="events.html">Events</a>
+            <div class="menu-image">
+              <div class="arch">
+                <img src="/pastry-sample.jpg" alt="Pastry Sample" />
+              </div>
+            </div>
+          </div>
       </div>
+    </div>
 
-      <p id="rights">© 2025 — All Rights Reserved</p>
-    </footer>
+      <!-- ...existing content... -->
+    </div>
+  </div>
+
+  <footer>
+    <div class="logo">
+      <h1>Deja Brew.</h1>
+      <p>Taste like you have been here before.</p>
+    </div>
+    <hr />
+    <div class="links">
+      <a href="index.html">Home</a>
+      <a href="menu.html">Menu</a>
+      <a href="events.html">Events</a>
+    </div>
+    <p id="rights">© 2025 — All Rights Reserved</p>
+  </footer>
+
+<style>
+  footer {
+    background-color: #332826;
+    padding: 2rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+    margin-top: auto;
+  }
+
+footer hr {
+    border: 1px solid #ae9b98;
+    height: 10rem;
+}
+.logo > h1 {
+    font-size: 7rem;
+    font-weight: normal;
+    color: #decbaf;
+
+    margin-bottom: -1.5rem;
+    letter-spacing: -5px;
+}
+
+.logo > p {
+    color:  #ae9b98;
+    margin-left: 10.5rem;
+    font-size: 1.15rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 100;
+}
+
+.links > a {
+    color: #decbaf;
+    font-size: 1.5rem;
+}
+.links {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.links > a:hover {
+    color: white;
+    cursor: pointer;
+}
+
+.links > a:visited {
+    color: #decbaf;
+}
+
+
+footer #rights {
+    align-self: flex-end;
+    margin-left: auto;
+    color: #ae9b98;
+}
+
+@media (max-width: 1024px) {
+    footer {
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    footer hr {
+        height: 0;
+        border: 1px solid #ae9b98;
+        width: 80%;
+    }
+
+    .links {
+        flex-direction: row;
+        gap: 1.5rem;
+    }
+
+    footer #rights {
+        align-self: center;
+        margin: 0;
+    }
+}
+
+@media (max-width: 571px) {
+    .logo > h1 {
+        font-size: 5rem;
+        margin-bottom: -1.2rem;
+        letter-spacing: -3px;
+    }
+
+    .logo > p {
+        margin-left: 7.5rem;
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 433px) {
+    .logo > h1 {
+        font-size: 4rem;
+        margin-bottom: -1rem;
+        letter-spacing: -2px;
+    }
+
+    .logo > p {
+        margin-left: 6rem;
+        font-size: 0.65rem;
+    }
+
+    .links > a {
+        font-size: 1rem;
+    }
+
+    footer #rights {
+        font-size: 0.75rem;
+    }
+}
+
+@media  (max-width: 362px) {
+    .logo > h1 {
+        font-size: 3rem;
+        margin-bottom: -0.8rem;
+        letter-spacing: -1.5px;
+    }
+
+    .logo > p {
+        margin-left: 4.5rem;
+        font-size: 0.55rem;
+    }
+
+    .links > a {
+        font-size: 0.875rem;
+    }
+
+    footer #rights {
+        font-size: 0.65rem;
+    }
+    
+}
+</style>
   </body>
 </html>
