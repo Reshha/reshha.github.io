@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Montserrat:wght@600&display=swap"
+      rel="stylesheet"
+    />
+    <title>Deja Brew</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        height: 3291px;
+        background: url("/cafe bg.png") no-repeat top center;
+        background-size: cover;
+        background-attachment: scroll;
+      }
+
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 82px;
+        background: rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(6px);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 40px;
+        z-index: 1000;
+      }
+
+      .logo {
+        font-family: "Abril Fatface", serif;
+        font-size: 32px;
+        letter-spacing: -0.06em;
+        color: #decbae;
+      }
+
+      nav {
+        display: flex;
+        margin-right: 80px;
+      }
+
+      nav a {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 600;
+        font-size: 20px;
+        letter-spacing: 0.035em;
+        color: #decbae;
+        text-decoration: none;
+        margin-left: 30px;
+        transition: color 0.3s ease;
+      }
+      nav a:hover {
+        color: #c3a87f;
+      }
+
+      .green-menu {
+        background-color: #383f39;
+        height: 90%;
+        margin: 0 auto;
+        width: 90%;
+        margin-top: 150px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .white-menu {
+        background-color: white;
+        width: 90%;
+        height: 95%;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .menu-gray {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 300px;
+        height: 850px;
+        background: #eae9e9;
+        z-index: 1;
+      }
+
+      .menu-gray2 {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 2000px;
+        height: 850px;
+        background: #eae9e9;
+        z-index: 1;
+      }
+
+      .menu-content {
+        position: relative;
+        z-index: 2;
+        padding: 30px 60px 60px;
+      }
+
+      .menu-title {
+        font-family: "Abril Fatface", serif;
+        font-size: 128px;
+        letter-spacing: -0.06em;
+        margin: 80px auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 30px;
+      }
+
+      .menu-title::before,
+      .menu-title::after {
+        content: "";
+        flex: 1;
+        height: 2px;
+        background: #000;
+        max-width: 120px;
+      }
+
+      .menu-category {
+        font-family: "Abril Fatface", serif;
+        font-size: 64px;
+        margin: -20px 0 80px;
+        border-bottom: 2px solid #000;
+        padding-bottom: 10px;
+      }
+
+      /* Extra spacing for teas category */
+      .teas-category {
+        margin-top: 120px; /* pushes this section down */
+      }
+
+      .menu-section {
+        display: flex;
+        flex-direction: row;
+        gap: 40px;
+        margin-top: -20px;
+        align-items: flex-start;
+      }
+
+      .menu-items {
+        flex: 2;
+        order: 1;
+      }
+      .menu-image {
+        flex: 1;
+        order: 2;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+      }
+
+      .menu-section.reverse .menu-items {
+        order: 2;
+      }
+      .menu-section.reverse .menu-image {
+        order: 1;
+      }
+
+      .menu-item {
+        margin-bottom: 25px;
+      }
+
+      .menu-item-name {
+        font-family: "Abril Fatface", serif;
+        font-size: 32px;
+        font-weight: bold;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 2px dotted #000;
+        padding-bottom: 5px;
+      }
+
+      .menu-item-price {
+        font-size: 32px;
+        font-weight: bold;
+      }
+
+      .menu-item-desc {
+        font-family: "Montserrat", sans-serif;
+        font-size: 16px;
+        font-style: italic;
+        color: #555;
+        margin-top: 5px;
+      }
+
+      .arch {
+        width: 450px;
+        height: 600px;
+        margin-top: -25px;
+        overflow: hidden;
+        border-radius: 50% 50% 0 0;
+        outline: 3px solid black;
+        outline-offset: -3px;
+      }
+
+      .arch img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .menu-section.reverse .arch {
+        margin-top: -25px; /* adjust value to your liking */
+      }
+
+      .menu-item-name span {
+        margin-left: 12px;
+        white-space: nowrap;
+      }
+
+      @media (max-width: 1024px) {
+        .menu-title { font-size: 80px; gap: 20px; }
+        .menu-category { font-size: 48px; margin-bottom: 60px; }
+        .menu-item-name { font-size: 24px; }
+        .menu-item-price { font-size: 24px; }
+        .menu-item-desc { font-size: 14px; }
+        .arch { width: 300px; height: 400px; border-radius: 40px 40px 0 0; }
+        .green-menu { margin-top: 120px; }
+        .menu-content { padding: 25px 30px 50px; }
+        .menu-gray, .menu-gray2 { height: auto; top: auto; bottom: 0; }
+      }
+
+      @media (max-width: 768px) {
+        header { flex-direction: column; align-items: flex-start; height: auto; padding: 15px 20px; }
+        nav { flex-direction: column; gap: 12px; margin: 10px 0 0 0; width: 100%; }
+        .menu-section { flex-direction: column; gap: 30px; }
+        .menu-section.reverse { flex-direction: column; }
+        .arch { width: 100%; height: auto; margin-top: 0; border-radius: 30px 30px 0 0; }
+        .menu-title { font-size: 60px; }
+        .menu-category { font-size: 36px; margin-bottom: 40px; }
+        .menu-item-name { font-size: 20px; }
+        .menu-item-price { font-size: 20px; }
+        .menu-item-desc { font-size: 14px; }
+        .green-menu { width: 100%; margin-top: 100px; }
+        .menu-content { padding: 20px 20px 40px; }
+
+        .menu-gray, .menu-gray2 {
+          position: relative;
+          height: auto;
+          top: auto;
+          bottom: auto;
+          margin: 40px 0;
+          border-radius: 20px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .menu-title { font-size: 48px; gap: 15px; }
+        .menu-category { font-size: 28px; margin-bottom: 30px; }
+        .menu-item-name { font-size: 18px; }
+        .menu-item-price { font-size: 18px; }
+        .menu-item-desc { font-size: 13px; }
+        .arch { border-radius: 20px 20px 0 0; }
+
+        .menu-content { padding: 15px 15px 30px; }
+        header { padding: 10px 15px; }
+        nav a { font-size: 18px; margin-left: 0; }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <div class="logo">Deja Brew</div>
+      <nav>
+        <a href="#">HOME</a>
+        <a href="#">MENU</a>
+        <a href="#">EVENTS</a>
+        <a href="#">CONTACT</a>
+      </nav>
+    </header>
+
+    <div class="green-menu">
+      <div class="white-menu">
+        <h1 class="menu-title">Menu</h1>
+        <div class="menu-gray"></div>
+        <div class="menu-gray2"></div>
+
+        <div class="menu-content">
+          <!-- Coffee: default (text left, image right) -->
+          <h2 class="menu-category">Coffee</h2>
+          <div class="menu-section">
+            <div class="menu-items">
+              <div class="menu-item">
+                <div class="menu-item-name">
+                  Espresso <span class="menu-item-price">$3</span>
+                </div>
+                <div class="menu-item-desc">Rich and bold espresso shot</div>
+              </div>
+              <div class="menu-item">
+                <div class="menu-item-name">
+                  Americano <span class="menu-item-price">$3.50</span>
+                </div>
+                <div class="menu-item-desc">Espresso with hot water</div>
+              </div>
+              <div class="menu-item">
+                <div class="menu-item-name">
+                  Cappuccino <span class="menu-item-price">$4</span>
+                </div>
+                <div class="menu-item-desc">Espresso, milk & foam</div>
+              </div>
+              <div class="menu-item">
+                <div class="menu-item-name">
+                  Latte <span class="menu-item-price">$4.50</span>
+                </div>
+                <div class="menu-item-desc">Creamy milk espresso blend</div>
+              </div>
+              <div class="menu-item">
+                <div class="menu-item-name">
+                  Mocha <span class="menu-item-price">$3.50</span>
+                </div>
+                <div class="menu-item-desc">Espresso with chocolate and milk</div>
+              </div>
+              <div class="menu-item">
+                <div class="menu-item-name">
+                  Cold Brew <span class="menu-item-price">$5</span>
+                </div>
+                <div class="menu-item-desc">Smooth, chilled coffee</div>
+              </div>
+            </div>
+
+            <div class="menu-image">
+              <div class="arch">
+                <img src="/coffee-sample.jpg" alt="Coffee Drinks" />
+              </div>
+            </div>
+          </div>
+
+          <h2 class="menu-category teas-category">Teas & Other Drinks</h2>
+          <div class="menu-section reverse">
+            <div class="menu-image">
+              <div class="arch">
+                <img src="/tea-sample.jpg" alt="Tea Drinks" />
+              </div>
+            </div>
+
+            <div class="menu-items">
+              <div class="menu-item">
+                <div class="menu-item-name">
+                  Chai Latte <span class="menu-item-price">$4.50</span>
+                </div>
+                <div class="menu-item-desc">Spiced tea with milk</div>
+              </div>
+              <div class="menu-item">
+                <div class="menu-item-name">
+                  Herbal Tea <span class="menu-item-price">$3</span>
+                </div>
+                <div class="menu-item-desc">Refreshing herbal infusion</div>
+              </div>
+              <div class="menu-item">
+                <div class="menu-item-name">
+                  Matcha Latte <span class="menu-item-price">$5</span>
+                </div>
+                <div class="menu-item-desc">Green tea with milk</div>
+              </div>
+              <div class="menu-item">
+                <div class="menu-item-name">
+                  Hot Chocolate <span class="menu-item-price">$3.50</span>
+                </div>
+                <div class="menu-item-desc">Rich cocoa with milk</div>
+              </div>
+              <div class="menu-item">
+                <div class="menu-item-name">
+                  Iced Lemon Tea <span class="menu-item-price">$4</span>
+                </div>
+                <div class="menu-item-desc">Chilled lemon black tea</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-content">
+          <h2 class="menu-category">Pastries & Snacks</h2>
+          <div class="menu-section">
+            <div class="menu-items">
+              <div class="menu-item">
+                <div class="menu-item-name">
+                  Croissant <span class="menu-item-price">$3</span>
+                </div>
+                <div class="menu-item-desc">Buttery, flaky pastry</div>
+              </div>
+              <div class="menu-item">
+                <div class="menu-item-name">
+                  Muffin <span class="menu-item-price">$3</span>
+                </div>
+                <div class="menu-item-desc">Soft and sweet treat</div>
+              </div>
+              <div class="menu-item">
+                <div class="menu-item-name">
+                  Bagel w/ Cream Cheese <span class="menu-item-price">$4</span>
+                </div>
+                <div class="menu-item-desc">Toasted bagel with creamy cheese</div>
+              </div>
+              <div class="menu-item">
+                <div class="menu-item-name">
+                  Brownie <span class="menu-item-price">$3.50</span>
+                </div>
+                <div class="menu-item-desc">Fudgy chocolate square</div>
+              </div>
+              <div class="menu-item">
+                <div class="menu-item-name">
+                  Scone <span class="menu-item-price">$3.25</span>
+                </div>
+                <div class="menu-item-desc">Tender, lightly sweet pastry</div>
+              </div>
+            </div>
+
+            <div class="menu-image">
+              <div class="arch">
+                <img src="/pastry-sample.jpg" alt="Pastry Sample" />
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
