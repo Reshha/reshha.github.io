@@ -421,5 +421,159 @@
           </div>
       </div>
     </div>
+
+    <footer>
+      <div class="logo">
+        <h1>Deja Brew.</h1>
+        <p>Taste like you have been here before.</p>
+      </div>
+      <hr />
+
+      <div class="links">
+        <a href="index.html">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="events.html">Events</a>
+      </div>
+
+      <p id="rights">© 2025 — All Rights Reserved</p>
+    </footer>
+
+<style>
+  footer {
+    background-color: #332826;
+    padding: 2rem;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    gap: 2rem;
+}
+
+footer hr {
+    border: 1px solid #ae9b98;
+    height: 10rem;
+}
+.logo > h1 {
+    font-size: 7rem;
+    font-weight: normal;
+    color: #decbaf;
+
+    margin-bottom: -1.5rem;
+    letter-spacing: -5px;
+}
+
+.logo > p {
+    color:  #ae9b98;
+    margin-left: 10.5rem;
+    font-size: 1.15rem;
+}
+
+.links > a {
+    color: #decbaf;
+    font-size: 1.5rem;
+}
+.links {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.links > a:hover {
+    color: white;
+    cursor: pointer;
+}
+
+.links > a:visited {
+    color: #decbaf;
+}
+
+
+footer #rights {
+    align-self: flex-end;
+    margin-left: auto;
+    color: #ae9b98;
+}
+
+@media (max-width: 1024px) {
+    footer {
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    footer hr {
+        height: 0;
+        border: 1px solid #ae9b98;
+        width: 80%;
+    }
+
+    .links {
+        flex-direction: row;
+        gap: 1.5rem;
+    }
+
+    footer #rights {
+        align-self: center;
+        margin: 0;
+    }
+}
+
+@media (max-width: 571px) {
+    .logo > h1 {
+        font-size: 5rem;
+        margin-bottom: -1.2rem;
+        letter-spacing: -3px;
+    }
+
+    .logo > p {
+        margin-left: 7.5rem;
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 433px) {
+    .logo > h1 {
+        font-size: 4rem;
+        margin-bottom: -1rem;
+        letter-spacing: -2px;
+    }
+
+    .logo > p {
+        margin-left: 6rem;
+        font-size: 0.65rem;
+    }
+
+    .links > a {
+        font-size: 1rem;
+    }
+
+    footer #rights {
+        font-size: 0.75rem;
+    }
+}
+
+@media  (max-width: 362px) {
+    .logo > h1 {
+        font-size: 3rem;
+        margin-bottom: -0.8rem;
+        letter-spacing: -1.5px;
+    }
+
+    .logo > p {
+        margin-left: 4.5rem;
+        font-size: 0.55rem;
+    }
+
+    .links > a {
+        font-size: 0.875rem;
+    }
+
+    footer #rights {
+        font-size: 0.65rem;
+    }
+    
+}
+</style>
   </body>
 </html>
